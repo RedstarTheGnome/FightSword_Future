@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://cji2q8tycha85"]
 
+[ext_resource type="PackedScene" uid="uid://cux6s0qjiyklk" path="res://unit.tscn" id="1_ig7tw"]
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7dm0k"]
 albedo_color = Color(0.36750987, 0.5919994, 0.13971329, 1)
 
@@ -32,3 +34,6 @@ size = 25.0
 [node name="GameManager" type="Node" parent="." unique_id=1990324659]
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=763934656]
+
+[node name="Unit" parent="." unique_id=1605464250 instance=ExtResource("1_ig7tw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -10)
