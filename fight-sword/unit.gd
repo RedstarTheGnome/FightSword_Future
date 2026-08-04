@@ -30,7 +30,12 @@ func deselect():
 func move_to(target_position: Vector3):
     if has_moved_this_turn:
         return
-    var offset = target_position - global_position
+    var distance = global_position.distance_to(target_position)
+    if distance > movement_range:
+        print("Target out of movement range!")
+        return
     global_position = target_position
     has_moved_this_turn = true
+    
+    
     print("moved to: ", target_position)
