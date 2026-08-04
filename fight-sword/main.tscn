@@ -26,3 +26,9 @@ shape = SubResource("BoxShape3D_rrak3")
 transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.86602545, 0, -0.86602545, 0.49999997, 0, 25, 25)
 projection = 1
 size = 25.0
+
+[node name="Units" type="Node3D" parent="." unique_id=1627681716]
+
+[node name="GameManager" type="Node" parent="." unique_id=1990324659]
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=763934656]
