@@ -11,7 +11,7 @@ material = SubResource("StandardMaterial3D_7dm0k")
 size = Vector2(60, 44)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rrak3"]
-size = Vector3(60, 44, 0.1)
+size = Vector3(60, 0.1, 44)
 
 [node name="Main" type="Node3D" unique_id=1329883779]
 
