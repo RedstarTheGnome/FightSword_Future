@@ -38,4 +38,4 @@ script = ExtResource("1_0xm2m")
 [node name="UI" type="CanvasLayer" parent="." unique_id=763934656]
 
 [node name="Unit" parent="." unique_id=1605464250 instance=ExtResource("1_ig7tw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -10)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.88482666, 0, 1.3292236)

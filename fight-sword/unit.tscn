@@ -3,12 +3,17 @@
 [ext_resource type="Script" uid="uid://dowc2dg6ysc8h" path="res://unit.gd" id="1_ctwoc"]
 [ext_resource type="PackedScene" uid="uid://df3k0j6ihprrq" path="res://model.tscn" id="2_davkp"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_0xm2m"]
+size = Vector3(1.4451294, 1.4370117, 1.2287598)
+
 [node name="Unit" type="Node3D" unique_id=1605464250]
 script = ExtResource("1_ctwoc")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=829847008]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1748441178]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.58610535, 0.21850586, 0.11437988)
+shape = SubResource("BoxShape3D_0xm2m")
 
 [node name="Model" parent="." unique_id=29990619 instance=ExtResource("2_davkp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)

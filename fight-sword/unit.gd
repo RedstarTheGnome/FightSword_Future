@@ -33,3 +33,4 @@ func move_to(target_position: Vector3):
     var offset = target_position - global_position
     global_position = target_position
     has_moved_this_turn = true
+    print("moved to: ", target_position)

@@ -19,7 +19,7 @@ func _unhandled_input(event: InputEvent) -> void:
 func _handle_click(screen_pos: Vector2) -> void:
     var space_state = get_viewport().world_3d.direct_space_state
     var from = camera.project_ray_origin(screen_pos)
-    var to = from + camera.prokect_ray_normal(screen_pos) * 1000.0
+    var to = from + camera.project_ray_normal(screen_pos) * 1000.0
     
     var query = PhysicsRayQueryParameters3D.create(from, to)
     var result = space_state.intersect_ray(query)
@@ -37,6 +37,7 @@ func _handle_click(screen_pos: Vector2) -> void:
 
 func _selected_unit(unit: Unit) -> void:
     if selected_unit:
-        selected_unit.deselected()
+        selected_unit.deselect()
     selected_unit = unit
     selected_unit.select()
+    print("selected: ", unit.unit_name)
