@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://cji2q8tycha85"]
 
+[ext_resource type="Script" uid="uid://dd6kah34yilcn" path="res://GameManager.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://cux6s0qjiyklk" path="res://unit.tscn" id="1_ig7tw"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7dm0k"]
@@ -32,6 +33,7 @@ size = 25.0
 [node name="Units" type="Node3D" parent="." unique_id=1627681716]
 
 [node name="GameManager" type="Node" parent="." unique_id=1990324659]
+script = ExtResource("1_0xm2m")
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=763934656]
 
