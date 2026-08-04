@@ -1,6 +1,10 @@
 [gd_scene format=3 uid="uid://cji2q8tycha85"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7dm0k"]
+albedo_color = Color(0.36750987, 0.5919994, 0.13971329, 1)
+
 [sub_resource type="PlaneMesh" id="PlaneMesh_rrak3"]
+material = SubResource("StandardMaterial3D_7dm0k")
 size = Vector2(60, 44)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rrak3"]
@@ -13,7 +17,6 @@ size = Vector3(60, 44, 0.1)
 [node name="ground" type="StaticBody3D" parent="battlefield" unique_id=253750949]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="battlefield/ground" unique_id=633474576]
-custom_aabb = AABB(60, 40, 0, 0, 0, 0)
 mesh = SubResource("PlaneMesh_rrak3")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="battlefield/ground" unique_id=1164903018]
