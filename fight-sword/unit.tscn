@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://cux6s0qjiyklk"]
+
+[ext_resource type="Script" uid="uid://dowc2dg6ysc8h" path="res://unit.gd" id="1_ctwoc"]
+[ext_resource type="PackedScene" uid="uid://df3k0j6ihprrq" path="res://model.tscn" id="2_davkp"]
+
+[node name="Unit" type="Node3D" unique_id=1605464250]
+script = ExtResource("1_ctwoc")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=829847008]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1748441178]
+
+[node name="Model" parent="." unique_id=29990619 instance=ExtResource("2_davkp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+
+[node name="Model2" parent="." unique_id=77380817 instance=ExtResource("2_davkp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
+
+[node name="Model3" parent="." unique_id=2063622288 instance=ExtResource("2_davkp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
