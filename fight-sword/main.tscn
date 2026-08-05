@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dd6kah34yilcn" path="res://GameManager.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://cux6s0qjiyklk" path="res://unit.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://4v6vvkx3vgc8" path="res://MoveMarker.tscn" id="3_h2yge"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7dm0k"]
 albedo_color = Color(0.36750987, 0.5919994, 0.13971329, 1)
@@ -39,3 +40,6 @@ script = ExtResource("1_0xm2m")
 
 [node name="Unit" parent="." unique_id=1605464250 instance=ExtResource("1_ig7tw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.88482666, 0, 1.3292236)
+
+[node name="MoveMarker" parent="." unique_id=626215884 instance=ExtResource("3_h2yge")]
+visible = false
