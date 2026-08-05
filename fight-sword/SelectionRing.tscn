@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://bm3v2oc6odmju"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_2gw7q"]
+top_radius = 1.2
+bottom_radius = 1.2
+height = 0.05
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rrak3"]
+transparency = 1
+albedo_color = Color(0, 0.003921569, 0, 0)
+
+[node name="SelectionRing" type="Node3D" unique_id=790258891]
+
+[node name="RingMesh" type="MeshInstance3D" parent="." unique_id=1506470119]
+mesh = SubResource("CylinderMesh_2gw7q")
+surface_material_override/0 = SubResource("StandardMaterial3D_rrak3")
