@@ -11,7 +11,7 @@ var selected: bool = false
 var current_phase: Phase = Phase.MOVEMENT
 var current_player: int = 1
 
-enum Phase {MOVEMENT, SHOOTING, CHARGING,FIGHTING}
+enum Phase {COMMAND, MOVEMENT, SHOOTING, CHARGING,FIGHTING}
 
 
 # Called when the node enters the scene tree for the first time.
@@ -48,6 +48,7 @@ func move_to(target_position: Vector3):
 	
 func next_phase():
 	match current_phase:
+		Phase.COMMAND: current_phase = Phase.MOVEMENT
 		Phase.MOVEMENT: current_phase = Phase.SHOOTING
 		Phase.SHOOTING: current_phase - Phase.CHARGING
 		Phase.FIGHTING:
