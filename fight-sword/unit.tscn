@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dowc2dg6ysc8h" path="res://unit.gd" id="1_ctwoc"]
 [ext_resource type="PackedScene" uid="uid://df3k0j6ihprrq" path="res://model.tscn" id="2_davkp"]
 [ext_resource type="PackedScene" uid="uid://bm3v2oc6odmju" path="res://SelectionRing.tscn" id="3_davkp"]
+[ext_resource type="PackedScene" uid="uid://bygs7h2eljrj1" path="res://MovementRange.tscn" id="4_5wnup"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0xm2m"]
 size = Vector3(1.4451294, 1.4370117, 1.2287598)
@@ -27,3 +28,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
 
 [node name="SelectionRing" parent="." unique_id=790258891 instance=ExtResource("3_davkp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+
+[node name="MovementRange" parent="." unique_id=380416238 instance=ExtResource("4_5wnup")]

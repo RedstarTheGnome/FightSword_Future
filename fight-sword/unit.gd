@@ -6,6 +6,7 @@ class_name Unit
 @export var models: Array[Node3D] = []
 
 @onready var selection_ring = $SelectionRing
+@onready var movement_range_mesh = $MovementRange
 
 var has_moved_this_turn: bool= false
 var selected: bool = false
@@ -23,6 +24,7 @@ func _ready():
 			if child is Node3D:
 				models.append(child)
 	selection_ring.visible = false
+	movement_range_mesh.visible = false
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -32,11 +34,12 @@ func _process(delta):
 func select():
 	selected = true
 	selection_ring.visible = true
-	#add visual identifier here
+	movement_range_mesh.visible = true
 
 func deselect():
 	selected = false
-	selection_ring.visable = false
+	selection_ring.visible = false
+	movement_range_mesh.visible = false
 
 func move_to(target_position: Vector3):
 	if has_moved_this_turn:
