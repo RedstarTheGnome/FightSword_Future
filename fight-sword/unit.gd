@@ -14,17 +14,26 @@ var selected: bool = false
 var current_phase: Phase = Phase.MOVEMENT
 var current_player: int = 1
 
+
+
+#Game phases
 enum Phase {COMMAND, MOVEMENT, SHOOTING, CHARGING,FIGHTING}
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	# movement ui sizes
+	var diameter = movement_range * 2.0
+	movement_range_mesh.scale.x = diameter / 12.0
+	movement_range_mesh.scale.z = diameter / 12.0
+	
 	if models.is_empty():
 		for child in get_children():
 			if child is Node3D:
 				models.append(child)
 	selection_ring.visible = false
 	movement_range_mesh.visible = false
+	
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
