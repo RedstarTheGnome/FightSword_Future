@@ -11,13 +11,11 @@ class_name Unit
 var has_moved_this_turn: bool= false
 var selected: bool = false
 
-var current_phase: Phase = Phase.MOVEMENT
-var current_player: int = 1
-
-
+#var current_phase: Phase = Phase.MOVEMENT
+#var current_player: int = 1
 
 #Game phases
-enum Phase {COMMAND, MOVEMENT, SHOOTING, CHARGING,FIGHTING}
+#enum Phase {COMMAND, MOVEMENT, SHOOTING, CHARGING,FIGHTING}
 
 
 # Called when the node enters the scene tree for the first time.
@@ -33,6 +31,7 @@ func _ready():
 				models.append(child)
 	selection_ring.visible = false
 	movement_range_mesh.visible = false
+	add_to_group("units")
 	
 	
 
@@ -72,16 +71,3 @@ func move_to(target_position: Vector3):
 	
 	print("moved to: ", target_position)
 	
-func next_phase():
-	match current_phase:
-		Phase.COMMAND: current_phase = Phase.MOVEMENT
-		Phase.MOVEMENT: current_phase = Phase.SHOOTING
-		Phase.SHOOTING: current_phase - Phase.CHARGING
-		Phase.FIGHTING:
-			current_phase = Phase.MOVEMENT
-			_end_turn()
-
-func _end_turn():
-	current_player = 2 if current_player == 1 else 1
-	for unit in get_tree().get_node_in_group("units"):
-		unit.has_moved_this_turn = false

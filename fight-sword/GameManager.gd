@@ -69,7 +69,9 @@ func _handle_click(screen_pos: Vector2) -> void:
 func _selected_unit(unit: Unit):
 	if selected_unit:
 		selected_unit.deselect()
+		#unit_panel.update_panel(null)
 		
 	selected_unit = unit
 	selected_unit.select()
+	unit_panel.update_panel(unit)
 	print("selected: ", unit.unit_name)
