@@ -20,6 +20,7 @@ var selected: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	add_to_group("units")
 	# movement ui sizes
 	var diameter = movement_range * 2.0
 	movement_range_mesh.scale.x = diameter / 12.0
@@ -31,7 +32,7 @@ func _ready():
 				models.append(child)
 	selection_ring.visible = false
 	movement_range_mesh.visible = false
-	add_to_group("units")
+	
 	
 	
 
