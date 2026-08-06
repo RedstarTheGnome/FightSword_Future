@@ -72,11 +72,25 @@ func _handle_click(screen_pos: Vector2) -> void:
 	
 	if hit_object is Unit or hit_object.get_parent() is Unit:
 		var unit = hit_object if hit_object is Unit else hit_object.get_parent()
-		_selected_unit(unit)
+		_request_select(unit)
 	else:
 		if selected_unit:
-			selected_unit.move_to(result.position)
+			_request_move(selected_unit,result.position)
+			
+func _request_select(unit: Unit):
+	if unit.owner_player != current_player:
+		print("That's not your unit!")
+		return
+	_selected_unit(unit)
 
+func _request_move(unit: Unit, target_position: Vector3):
+	if unit.owner_player != current_player:
+		print("That's not your unit!")
+		return
+	if current_phase != Phase.MOVEMENT:
+		print("Can't move outside Movement phase!")
+		return
+	unit.move_to(target_position)
 func _selected_unit(unit: Unit):
 	if selected_unit:
 		selected_unit.deselect()
@@ -104,6 +118,9 @@ func _end_turn():
 		
 func _on_end_turn_pressed():
 	next_phase()
+	if selected_unit:
+		selected_unit.deselect()
+		selected_unit = null
 	_update_phase_label()
 
 func _update_phase_label():

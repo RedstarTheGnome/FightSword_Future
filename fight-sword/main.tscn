@@ -97,7 +97,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.88482666, 0, 1.3292236)
 unit_id = "P1-Boyz"
 
 [node name="Unit2" parent="." unique_id=1025424870 instance=ExtResource("1_ig7tw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.88482666, 0, 1.3292236)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2335534, 0, 1.3292236)
 owner_player = 2
 unit_id = "P2-Marines"
 
