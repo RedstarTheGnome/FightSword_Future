@@ -1,6 +1,7 @@
 extends Node
 
 @onready var move_marker = $"../MoveMarker"
+@onready var unit_panel = $"../UI/UnitPanel"
 
 @onready var camera: Camera3D = $"../Camera"
 var selected_unit: Unit = null 
@@ -65,9 +66,10 @@ func _handle_click(screen_pos: Vector2) -> void:
 		if selected_unit:
 			selected_unit.move_to(result.position)
 
-func _selected_unit(unit: Unit) -> void:
+func _selected_unit(unit: Unit):
 	if selected_unit:
 		selected_unit.deselect()
+		
 	selected_unit = unit
 	selected_unit.select()
 	print("selected: ", unit.unit_name)
