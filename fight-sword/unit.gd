@@ -8,15 +8,10 @@ class_name Unit
 @onready var selection_ring = $SelectionRing
 @onready var movement_range_mesh = $MovementRange
 
+@onready var game_manager = get_tree().get_root().get_node("Main/GameManager")
+
 var has_moved_this_turn: bool= false
 var selected: bool = false
-
-#var current_phase: Phase = Phase.MOVEMENT
-#var current_player: int = 1
-
-#Game phases
-#enum Phase {COMMAND, MOVEMENT, SHOOTING, CHARGING,FIGHTING}
-
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -51,6 +46,9 @@ func deselect():
 	movement_range_mesh.visible = false
 
 func move_to(target_position: Vector3):
+	if game_manager.current_phase != GameManager.Phase.MOVEMENT:
+		print("Can't move outside Movement phase!")
+		return
 	if has_moved_this_turn:
 		return
 	var distance = global_position.distance_to(target_position)
@@ -65,10 +63,8 @@ func move_to(target_position: Vector3):
 		target_position,
 		0.5
 	)
-	#if tween:
-	#	return
 	has_moved_this_turn = true
 	
-	
 	print("moved to: ", target_position)
+
 	

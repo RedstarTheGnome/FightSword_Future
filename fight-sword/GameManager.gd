@@ -1,3 +1,4 @@
+class_name GameManager
 extends Node
 
 @onready var move_marker = $"../MoveMarker"
