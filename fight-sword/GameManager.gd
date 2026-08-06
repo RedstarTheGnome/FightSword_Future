@@ -8,6 +8,10 @@ var selected_unit: Unit = null
 
 @export var valid_material : Material
 @export var invalid_material : Material
+
+enum Phase {COMMAND, MOVEMENT, SHOOTING, CHARGING, FIGHTING}
+var current_phase: Phase = Phase.MOVEMENT
+var current_player: int = 1 
 	
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -75,3 +79,18 @@ func _selected_unit(unit: Unit):
 	selected_unit.select()
 	unit_panel.update_panel(unit)
 	print("selected: ", unit.unit_name)
+	
+func next_phase():
+	match current_phase:
+		Phase.COMMAND: current_phase = Phase.MOVEMENT
+		Phase.MOVEMENT: current_phase = Phase.SHOOTING
+		Phase.SHOOTING: current_phase = Phase.CHARGING
+		Phase.CHARGING: current_phase = Phase.FIGHTING
+		Phase.FIGHTING:
+			current_phase = Phase.MOVEMENT
+			_end_turn()
+
+func _end_turn():
+	current_player = 2 if current_player == 1 else 1
+	for unit in get_tree().get_nodes_in_group("units"):
+		unit.has_moved_this_turn = false
