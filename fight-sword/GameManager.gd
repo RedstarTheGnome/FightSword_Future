@@ -13,6 +13,7 @@ var selected_unit: Unit = null
 @export var valid_material : Material
 @export var invalid_material : Material
 
+
 enum Phase {COMMAND, MOVEMENT, SHOOTING, CHARGING, FIGHTING}
 var current_phase: Phase = Phase.MOVEMENT
 var current_player: int = 1 

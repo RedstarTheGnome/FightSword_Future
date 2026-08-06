@@ -94,14 +94,12 @@ horizontal_alignment = 1
 
 [node name="Unit" parent="." unique_id=1605464250 instance=ExtResource("1_ig7tw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.88482666, 0, 1.3292236)
-unit_name = null
-movement_range = null
+unit_id = "P1-Boyz"
 
-[node name="Unit2" parent="." unique_id=1599524467 instance=ExtResource("1_ig7tw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.972109, 0, 1.0509529)
-unit_name = null
-movement_range = null
-models = null
+[node name="Unit2" parent="." unique_id=1025424870 instance=ExtResource("1_ig7tw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.88482666, 0, 1.3292236)
+owner_player = 2
+unit_id = "P2-Marines"
 
 [node name="MoveMarker" parent="." unique_id=626215884 instance=ExtResource("3_h2yge")]
 visible = false

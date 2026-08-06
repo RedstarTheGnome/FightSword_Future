@@ -4,6 +4,8 @@ class_name Unit
 @export var unit_name: String = "Tactical Squad"
 @export var movement_range: float = 6.0
 @export var models: Array[Node3D] = []
+@export var owner_player: int = 1
+@export var unit_id: String = ""
 
 @onready var selection_ring = $SelectionRing
 @onready var movement_range_mesh = $MovementRange
@@ -64,6 +66,7 @@ func move_to(target_position: Vector3):
 		0.5
 	)
 	has_moved_this_turn = true
+	movement_range_mesh.visible = false
 	
 	print("moved to: ", target_position)
 
