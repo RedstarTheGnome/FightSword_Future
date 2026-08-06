@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://dd6kah34yilcn" path="res://GameManager.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://cux6s0qjiyklk" path="res://unit.tscn" id="1_ig7tw"]
+[ext_resource type="Material" uid="uid://c2ei3m0bobki5" path="res://Materials/ValidMove.tres" id="2_lquwl"]
+[ext_resource type="Material" uid="uid://lxvjhhj04ugs" path="res://Materials/InvalidMove.tres" id="3_7mycd"]
 [ext_resource type="PackedScene" uid="uid://4v6vvkx3vgc8" path="res://MoveMarker.tscn" id="3_h2yge"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7dm0k"]
@@ -35,6 +37,8 @@ size = 25.0
 
 [node name="GameManager" type="Node" parent="." unique_id=1990324659]
 script = ExtResource("1_0xm2m")
+valid_material = ExtResource("2_lquwl")
+invalid_material = ExtResource("3_7mycd")
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=763934656]
 

@@ -4,6 +4,9 @@ extends Node
 
 @onready var camera: Camera3D = $"../Camera"
 var selected_unit: Unit = null 
+
+@export var valid_material : Material
+@export var invalid_material : Material
 	
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -15,7 +18,7 @@ func _process(delta):
 	if selected_unit == null:
 		move_marker.visible = false
 		return
-	
+	#Ghost of unit placement
 	var mouse_pos= get_viewport().get_mouse_position()
 	var space_state = get_viewport().world_3d.direct_space_state
 	
@@ -31,7 +34,13 @@ func _process(delta):
 	
 	move_marker.visible = true
 	move_marker.global_position = result.position
-
+	#end ghost
+	
+	var distance = selected_unit.global_position.distance_to(result.position)
+	if distance <= selected_unit.movement_range:
+		move_marker.get_node("MeshInstance3D").material_override = valid_material
+	else:
+		move_marker.get_node("MeshInstance3D").material_override = invalid_material
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
