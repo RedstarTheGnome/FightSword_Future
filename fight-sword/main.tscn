@@ -83,7 +83,7 @@ grow_horizontal = 0
 grow_vertical = 0
 text = "Next Turn"
 
-[node name="Label" type="Label" parent="UI" unique_id=755250019]
+[node name="PhaseLabel" type="Label" parent="UI" unique_id=755250019]
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 57.0
@@ -96,6 +96,12 @@ horizontal_alignment = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.88482666, 0, 1.3292236)
 unit_name = null
 movement_range = null
+
+[node name="Unit2" parent="." unique_id=1599524467 instance=ExtResource("1_ig7tw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.972109, 0, 1.0509529)
+unit_name = null
+movement_range = null
+models = null
 
 [node name="MoveMarker" parent="." unique_id=626215884 instance=ExtResource("3_h2yge")]
 visible = false

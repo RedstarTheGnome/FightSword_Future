@@ -4,6 +4,9 @@ extends Node
 @onready var move_marker = $"../MoveMarker"
 @onready var unit_panel = $"../UI/UnitPanel"
 
+@onready var end_turn_button = $"../UI/EndTurnButton"
+@onready var phase_label = $"../UI/PhaseLabel"
+
 @onready var camera: Camera3D = $"../Camera"
 var selected_unit: Unit = null 
 
@@ -17,6 +20,8 @@ var current_player: int = 1
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	move_marker.visible = false
+	end_turn_button.pressed.connect(_on_end_turn_pressed)
+	_update_phase_label()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -95,3 +100,10 @@ func _end_turn():
 	current_player = 2 if current_player == 1 else 1
 	for unit in get_tree().get_nodes_in_group("units"):
 		unit.has_moved_this_turn = false
+		
+func _on_end_turn_pressed():
+	next_phase()
+	_update_phase_label()
+
+func _update_phase_label():
+	phase_label.text = "Player %d - %s" % [current_player, Phase.keys()[current_phase]]		
