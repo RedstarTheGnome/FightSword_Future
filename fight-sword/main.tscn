@@ -5,6 +5,7 @@
 [ext_resource type="Material" uid="uid://c2ei3m0bobki5" path="res://Materials/ValidMove.tres" id="2_lquwl"]
 [ext_resource type="Material" uid="uid://lxvjhhj04ugs" path="res://Materials/InvalidMove.tres" id="3_7mycd"]
 [ext_resource type="PackedScene" uid="uid://4v6vvkx3vgc8" path="res://MoveMarker.tscn" id="3_h2yge"]
+[ext_resource type="Script" uid="uid://bjk0gjn4u8dbi" path="res://UnitPanel.gd" id="4_7mycd"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7dm0k"]
 albedo_color = Color(0.36750987, 0.5919994, 0.13971329, 1)
@@ -51,6 +52,7 @@ offset_top = -149.0
 offset_right = 303.0
 offset_bottom = 1.0
 grow_vertical = 0
+script = ExtResource("4_7mycd")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/UnitPanel" unique_id=634560749]
 layout_mode = 0
