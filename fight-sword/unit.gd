@@ -57,7 +57,16 @@ func move_to(target_position: Vector3):
 	if distance > movement_range:
 		print("Target out of movement range!")
 		return
-	global_position = target_position
+	var tween = create_tween()
+	
+	tween.tween_property(
+		self,
+		"global_position",
+		target_position,
+		0.5
+	)
+	#if tween:
+	#	return
 	has_moved_this_turn = true
 	
 	
