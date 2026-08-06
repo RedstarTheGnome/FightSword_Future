@@ -16,7 +16,21 @@ func _process(delta):
 		move_marker.visible = false
 		return
 	
-	var mouse_pos= get_viewport().world_3d.direct_space_state
+	var mouse_pos= get_viewport().get_mouse_position()
+	var space_state = get_viewport().world_3d.direct_space_state
+	
+	var from = camera.project_ray_origin(mouse_pos)
+	var to = from + camera.project_ray_normal(mouse_pos) * 1000
+	
+	var query = PhysicsRayQueryParameters3D.create(from, to)
+	var result = space_state.intersect_ray(query)
+	
+	if result.is_empty():
+		move_marker.visible = false
+		return
+	
+	move_marker.visible = true
+	move_marker.global_position = result.position
 
 
 func _unhandled_input(event: InputEvent) -> void:
