@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://4v6vvkx3vgc8" path="res://MoveMarker.tscn" id="3_h2yge"]
 [ext_resource type="Script" uid="uid://bjk0gjn4u8dbi" path="res://UnitPanel.gd" id="4_7mycd"]
 [ext_resource type="Resource" uid="uid://bmr53obc1qx8w" path="res://data/units/tacSquad.tres" id="6_272bh"]
+[ext_resource type="Resource" uid="uid://cbedf02ktx7l6" path="res://data/units/Boys.tres" id="7_5vw27"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7dm0k"]
 albedo_color = Color(0.36750987, 0.5919994, 0.13971329, 1)
@@ -100,7 +101,7 @@ unit_id = "P1-Boyz"
 
 [node name="Unit2" parent="." unique_id=1025424870 instance=ExtResource("1_ig7tw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2335534, 0, 1.3292236)
-unit_data = ExtResource("6_272bh")
+unit_data = ExtResource("7_5vw27")
 owner_player = 2
 unit_id = "P2-Marines"
 

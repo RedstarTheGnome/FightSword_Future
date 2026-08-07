@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="UnitData" format=3 uid="uid://cbedf02ktx7l6"]
+
+[ext_resource type="Script" uid="uid://bq053ng8n8er2" path="res://unit_data.gd" id="1_bllr8"]
+
+[resource]
+script = ExtResource("1_bllr8")
+unit_type_id = "Boys"
+display_name = "Boys Squad"
+movement_range = 12.0
+metadata/_custom_type_script = "uid://bq053ng8n8er2"
