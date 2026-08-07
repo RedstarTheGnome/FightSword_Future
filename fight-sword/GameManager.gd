@@ -115,6 +115,7 @@ func _end_turn():
 	current_player = 2 if current_player == 1 else 1
 	for unit in get_tree().get_nodes_in_group("units"):
 		unit.has_moved_this_turn = false
+		unit.has_shot_this_turn = false
 		
 func _on_end_turn_pressed():
 	next_phase()
