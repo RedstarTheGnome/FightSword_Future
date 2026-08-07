@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="UnitData" format=3 uid="uid://bmr53obc1qx8w"]
+
+[ext_resource type="Script" uid="uid://bq053ng8n8er2" path="res://unit_data.gd" id="1_nyobk"]
+
+[resource]
+script = ExtResource("1_nyobk")
+unit_type_id = "tacSquad"
+metadata/_custom_type_script = "uid://bq053ng8n8er2"
