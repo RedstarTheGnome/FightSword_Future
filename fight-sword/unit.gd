@@ -1,8 +1,7 @@
 extends Node3D
 class_name Unit
 
-@export var unit_name: String = "Tactical Squad"
-@export var movement_range: float = 6.0
+@export var unit_data: UnitData
 @export var models: Array[Node3D] = []
 @export var owner_player: int = 1
 @export var unit_id: String = ""
@@ -19,7 +18,7 @@ var selected: bool = false
 func _ready():
 	add_to_group("units")
 	# movement ui sizes
-	var diameter = movement_range * 2.0
+	var diameter = unit_data.movement_range * 2.0
 	movement_range_mesh.scale.x = diameter / 12.0
 	movement_range_mesh.scale.z = diameter / 12.0
 	
@@ -54,7 +53,7 @@ func move_to(target_position: Vector3):
 	if has_moved_this_turn:
 		return
 	var distance = global_position.distance_to(target_position)
-	if distance > movement_range:
+	if distance > unit_data.movement_range:
 		print("Target out of movement range!")
 		return
 	var tween = create_tween()
