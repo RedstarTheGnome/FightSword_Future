@@ -1,8 +1,12 @@
 [gd_resource type="Resource" script_class="UnitData" format=3 uid="uid://bmr53obc1qx8w"]
 
 [ext_resource type="Script" uid="uid://bq053ng8n8er2" path="res://unit_data.gd" id="1_nyobk"]
+[ext_resource type="Script" uid="uid://b2k8t0h6xt3es" path="res://model_data.gd" id="1_qojai"]
+[ext_resource type="Resource" uid="uid://bptbqiodnlife" path="res://data/models/rifleman.tres" id="2_2faif"]
+[ext_resource type="Resource" uid="uid://fp3qg20yqyex" path="res://data/models/Rocketman.tres" id="3_82e0s"]
 
 [resource]
 script = ExtResource("1_nyobk")
 unit_type_id = "tacSquad"
+model_loadout = Array[ExtResource("1_qojai")]([ExtResource("2_2faif"), ExtResource("2_2faif"), ExtResource("3_82e0s")])
 metadata/_custom_type_script = "uid://bq053ng8n8er2"
