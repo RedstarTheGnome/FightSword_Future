@@ -23,7 +23,12 @@ func _ready():
 	move_marker.visible = false
 	end_turn_button.pressed.connect(_on_end_turn_pressed)
 	_update_phase_label()
+	
 	#for testing
+	var hits = CombatResolver.resolve_hits(4,5)
+	var wounds = CombatResolver.resolve_wounds(4,3,hits)
+	var fails = CombatResolver.resolve_failed_saves(5, 0, wounds)
+	print("hits:  %d, wounds: %d, failed saves: %d" % [hits,wounds,fails])
 	
 
 
