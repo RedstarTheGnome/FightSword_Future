@@ -9,4 +9,6 @@ display_name = "Rocketman"
 weapon_name = "RocketLaucher"
 weapon_damage = 10
 weapon_range = 36.0
+weapon_ap = 1
+weapon_strength = 6
 metadata/_custom_type_script = "uid://b2k8t0h6xt3es"
