@@ -1,4 +1,5 @@
 extends Node3D
+class_name BattleModel
 var base_size: float = 0.5
 
 var model_data: ModelData

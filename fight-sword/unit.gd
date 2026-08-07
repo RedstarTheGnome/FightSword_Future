@@ -11,8 +11,14 @@ class_name Unit
 
 @onready var game_manager = get_tree().get_root().get_node("Main/GameManager")
 
+@export var model_scene: PackedScene 
+
+
 var has_moved_this_turn: bool= false
 var selected: bool = false
+
+var battle_models: Array[BattleModel] = []
+var has_shot_this_turn: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -28,9 +34,7 @@ func _ready():
 				models.append(child)
 	selection_ring.visible = false
 	movement_range_mesh.visible = false
-	
-	
-	
+	_spawn_models()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -68,5 +72,16 @@ func move_to(target_position: Vector3):
 	movement_range_mesh.visible = false
 	
 	print("moved to: ", target_position)
-
+	
+func _spawn_models() -> void:
+	for i in unit_data.model_loadout.size():
+		var model_data: ModelData = unit_data.model_loadout[i]
+		var model: BattleModel = model_scene.instantiate()
+		add_child(model)
+		model.initialize(model_data)
+		model.postition = Vector3(i * 1.5,0,0)
+		battle_models.append(model)
+			
+func get_alive_models () -> Array[BattleModel]:
+	return battle_models.filter(func(m): return m.is_alive)
 	

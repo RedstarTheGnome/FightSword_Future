@@ -13,6 +13,9 @@ script = ExtResource("1_bctr2")
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
 mesh = SubResource("CapsuleMesh_gp1di")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh" unique_id=59324812]
+[node name="ModelBody" type="StaticBody3D" parent="." unique_id=1978365211]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ModelBody" unique_id=59324812]
 transform = Transform3D(0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_gp1di")
