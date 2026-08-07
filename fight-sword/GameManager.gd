@@ -160,13 +160,14 @@ func _update_phase_label():
 	
 
 func _handle_shooting_click(hit_object: Node) -> void:
-	if hit_object is BattleModel:
-		var owning_unit = hit_object.get_owning_unit()
+	var model_node = hit_object if hit_object is BattleModel else hit_object.get_parent()
+	if model_node is BattleModel:
+		var owning_unit = model_node.get_owning_unit()
 		if owning_unit == shooting_unit:
-			active_model = hit_object
-			print("Active weapon: ", hit_object.model_data.weapon_name)
+			active_model = model_node
+			print("Active weapon: ", model_node.model_data.weapon_name)
 		return
-		
+
 	if hit_object is Unit or hit_object.get_parent() is Unit:
 		var unit = hit_object if hit_object is Unit else hit_object.get_parent()
 		if unit.owner_player == current_player:
