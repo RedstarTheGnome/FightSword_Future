@@ -17,7 +17,18 @@ var selected_unit: Unit = null
 enum Phase {COMMAND, MOVEMENT, SHOOTING, CHARGING, FIGHTING}
 var current_phase: Phase = Phase.MOVEMENT
 var current_player: int = 1 
-	
+
+#shooting states
+var shooting_unit: Unit = null
+var activ_model: BattleModel = null
+var weapon_assignments: Dictionary = {}
+
+var allocating_damage: bool = false
+var pending_damage: int = 0
+var pending_damage_amount: int = 0
+var pending_damage_target: Unit = null 
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	move_marker.visible = false
