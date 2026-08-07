@@ -23,6 +23,8 @@ func _ready():
 	move_marker.visible = false
 	end_turn_button.pressed.connect(_on_end_turn_pressed)
 	_update_phase_label()
+	#for testing
+	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

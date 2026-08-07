@@ -2,10 +2,12 @@
 
 [ext_resource type="Script" uid="uid://bq053ng8n8er2" path="res://unit_data.gd" id="1_bllr8"]
 [ext_resource type="Script" uid="uid://b2k8t0h6xt3es" path="res://model_data.gd" id="1_tebd2"]
+[ext_resource type="Resource" uid="uid://bptbqiodnlife" path="res://data/models/rifleman.tres" id="2_w8ff1"]
 
 [resource]
 script = ExtResource("1_bllr8")
 unit_type_id = "Boys"
 display_name = "Boys Squad"
 movement_range = 12.0
+model_loadout = Array[ExtResource("1_tebd2")]([ExtResource("2_w8ff1"), ExtResource("2_w8ff1"), ExtResource("2_w8ff1"), ExtResource("2_w8ff1"), ExtResource("2_w8ff1")])
 metadata/_custom_type_script = "uid://bq053ng8n8er2"
