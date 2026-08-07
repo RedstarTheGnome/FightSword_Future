@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ModelData" format=3 uid="uid://bptbqiodnlife"]
+
+[ext_resource type="Script" uid="uid://b2k8t0h6xt3es" path="res://model_data.gd" id="1_lfdo5"]
+
+[resource]
+script = ExtResource("1_lfdo5")
+model_type_id = "Rifleman"
+metadata/_custom_type_script = "uid://b2k8t0h6xt3es"

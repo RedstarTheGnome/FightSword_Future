@@ -6,3 +6,5 @@ extends Resource
 @export var movement_range: float = 6.0
 @export var max_health: int = 10
 @export var damage: int = 2
+
+@export var model_loadout: Array[ModelData] = []

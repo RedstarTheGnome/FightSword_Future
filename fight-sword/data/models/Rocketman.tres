@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ModelData" format=3 uid="uid://fp3qg20yqyex"]
+
+[ext_resource type="Script" uid="uid://b2k8t0h6xt3es" path="res://model_data.gd" id="1_7m5jl"]
+
+[resource]
+script = ExtResource("1_7m5jl")
+model_type_id = "Rocketman"
+display_name = "Rocketman"
+weapon_name = "RocketLaucher"
+weapon_damage = 10
+weapon_range = 36.0
+metadata/_custom_type_script = "uid://b2k8t0h6xt3es"
