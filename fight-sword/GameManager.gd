@@ -49,7 +49,7 @@ func _process(delta):
 	#end ghost
 	
 	var distance = selected_unit.global_position.distance_to(result.position)
-	if distance <= selected_unit.movement_range:
+	if distance <= selected_unit.unit_data.movement_range:
 		move_marker.get_node("MeshInstance3D").material_override = valid_material
 	else:
 		move_marker.get_node("MeshInstance3D").material_override = invalid_material
