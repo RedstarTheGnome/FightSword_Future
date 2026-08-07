@@ -22,7 +22,7 @@ func update_panel(unit):
 		return
 	
 	name_label.text = unit.unit_name
-	movement_label.text = "Movement: %s\"" % unit.movement_range
+	movement_label.text = "Movement: %s\"" % unit.unit_data.movement_range
 	
 	if unit.has_moved_this_turn:
 		status_label.text = "Status: Moved"

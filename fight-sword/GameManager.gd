@@ -99,7 +99,7 @@ func _selected_unit(unit: Unit):
 	selected_unit = unit
 	selected_unit.select()
 	unit_panel.update_panel(unit)
-	print("selected: ", unit.unit_name)
+	print("selected: ", unit.unit_data.display_name)
 	
 func next_phase():
 	match current_phase:
