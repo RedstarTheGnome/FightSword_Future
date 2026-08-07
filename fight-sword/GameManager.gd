@@ -26,9 +26,9 @@ var active_model: BattleModel = null
 var weapon_assignments: Dictionary = {}
 
 var allocating_damage: bool = false
-var pending_damage: int = 0
 var pending_damage_amount: int = 0
 var pending_damage_target: Unit = null 
+var damage_queue: Array = []
 
 
 # Called when the node enters the scene tree for the first time.
@@ -196,12 +196,9 @@ func _handle_damage_allocation_click(hit_object: Node) -> void:
 		return
 	
 	model_node.take_damage(pending_damage_amount)
-	pending_damage =- 1
-	print("%s took %d damage (%d remaining)" % [model_node.model_data.display_name,pending_damage_amount, pending_damage])
+	print("%s took %d damage" % [model_node.model_data.display_name, pending_damage_amount])
 	
-	if pending_damage <= 0:
-		allocating_damage = false
-		pending_damage_target = null
+	_pop_next_damage_instance()
 	
 func _on_resolve_shooting_pressed() -> void:
 	if shooting_unit == null or current_phase != Phase.SHOOTING:
@@ -224,22 +221,32 @@ func _resolve_shooting() -> void:
 		var failed_saves = CombatResolver.resolve_failed_saves(rep_target.model_data.save, data.weapon_ap, wounds)
 		
 		print("%s fires at %s: %d hits, %d wounds, %d failed saves" % [data.weapon_name, target_unit.unit_data.display_name, hits, wounds, failed_saves])
-			
-		if failed_saves > 0:
-			_start_damage_allocation(target_unit, failed_saves, data.weapon_damage)
+		
+		for i in failed_saves:
+			_queue_damage(target_unit, data.weapon_damage)
 		
 	shooting_unit.has_shot_this_turn = true
 	shooting_unit = null
 	active_model = null
 	weapon_assignments.clear()
 		
-func _start_damage_allocation(target_unit: Unit, instances: int, damage_per_instance: int) -> void:
-	allocating_damage = true
-	pending_damage = instances
-	pending_damage_amount = damage_per_instance
-	pending_damage_target = target_unit
-	print("Player %d: click %d model(s) on %s to allocate damage" % [ 3 - current_player, pending_damage, target_unit.unit_data.display_name])
+func _queue_damage(target_unit: Unit, amount: int) -> void:
+	damage_queue.append({"target": target_unit, "amount": amount})
+	if not allocating_damage:
+		_pop_next_damage_instance()
 
+func _pop_next_damage_instance() -> void:
+	if damage_queue.is_empty():
+		allocating_damage = false
+		pending_damage_target = null
+		return
+	var entry = damage_queue.pop_front()
+	allocating_damage = true
+	pending_damage_target = entry["target"]
+	pending_damage_amount = entry["amount"]
+	print("Player %d: click a model on %s to allocate %d damage" % [
+		3 - current_player, entry["target"].unit_data.display_name, entry["amount"]
+	])
 #resolve click helper
 func _resolve_clicked_unit(hit_object: Node) -> Unit:
 	if hit_object is BattleModel:

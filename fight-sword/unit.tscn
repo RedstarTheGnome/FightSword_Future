@@ -10,6 +10,8 @@ size = Vector3(1.4451294, 1.4370117, 1.2287598)
 
 [node name="Unit" type="Node3D" unique_id=1605464250]
 script = ExtResource("1_ctwoc")
+owner_player = null
+unit_id = null
 model_scene = ExtResource("2_davkp")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=829847008]

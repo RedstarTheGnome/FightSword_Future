@@ -1,5 +1,7 @@
 extends Node3D
 class_name BattleModel
+
+signal died(model: BattleModel)
 var base_size: float = 0.5
 
 var model_data: ModelData
@@ -27,6 +29,7 @@ func take_damage(amount: int) -> void:
 
 func die() -> void:
 	is_alive = false
+	died.emit(self)
 	queue_free()
 
 func get_owning_unit() -> Unit:

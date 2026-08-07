@@ -80,8 +80,12 @@ func _spawn_models() -> void:
 		add_child(model)
 		model.initialize(model_data)
 		model.position = Vector3(i * 1.5,0,1.5)
+		model.died.connect(_on_model_died)
 		battle_models.append(model)
+		
+func _on_model_died(model: BattleModel) -> void:
+	battle_models.erase(model)
 			
 func get_alive_models () -> Array[BattleModel]:
-	return battle_models.filter(func(m): return m.is_alive)
+	return battle_models.filter(func(m): return is_instance_valid(m) and m.is_alive)
 	
