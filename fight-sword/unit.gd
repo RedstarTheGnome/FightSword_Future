@@ -79,7 +79,7 @@ func _spawn_models() -> void:
 		var model: BattleModel = model_scene.instantiate()
 		add_child(model)
 		model.initialize(model_data)
-		model.postition = Vector3(i * 1.5,0,0)
+		model.position = Vector3(i * 1.5,0,0)
 		battle_models.append(model)
 			
 func get_alive_models () -> Array[BattleModel]:

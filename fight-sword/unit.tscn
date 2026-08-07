@@ -18,15 +18,6 @@ model_scene = ExtResource("2_davkp")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.58610535, 0.21850586, 0.11437988)
 shape = SubResource("BoxShape3D_0xm2m")
 
-[node name="Model" parent="." unique_id=29990619 instance=ExtResource("2_davkp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
-
-[node name="Model2" parent="." unique_id=77380817 instance=ExtResource("2_davkp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
-
-[node name="Model3" parent="." unique_id=2063622288 instance=ExtResource("2_davkp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
-
 [node name="SelectionRing" parent="." unique_id=790258891 instance=ExtResource("3_davkp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
 
