@@ -1,6 +1,8 @@
 class_name GameManager
 extends Node
 
+@onready var resolve_shooting_button = $"../UI/ResolveShootingButton"
+
 @onready var move_marker = $"../MoveMarker"
 @onready var unit_panel = $"../UI/UnitPanel"
 
@@ -20,7 +22,7 @@ var current_player: int = 1
 
 #shooting states
 var shooting_unit: Unit = null
-var activ_model: BattleModel = null
+var active_model: BattleModel = null
 var weapon_assignments: Dictionary = {}
 
 var allocating_damage: bool = false
@@ -33,7 +35,10 @@ var pending_damage_target: Unit = null
 func _ready():
 	move_marker.visible = false
 	end_turn_button.pressed.connect(_on_end_turn_pressed)
+	resolve_shooting_button.pressed.connect(_on_resolve_shooting_pressed)
 	_update_phase_label()
+	
+	
 	
 	#for testing
 	#var hits = CombatResolver.resolve_hits(4,5)
@@ -87,6 +92,14 @@ func _handle_click(screen_pos: Vector2) -> void:
 	if result.is_empty():
 		return
 	var hit_object = result.collider
+	
+	if allocating_damage:
+		_handle_damage_allocation_click(hit_object)
+		return
+	
+	if current_phase == Phase.SHOOTING:
+		_handle_shooting_click(hit_object)
+		return
 	
 	if hit_object is Unit or hit_object.get_parent() is Unit:
 		var unit = hit_object if hit_object is Unit else hit_object.get_parent()
@@ -144,3 +157,85 @@ func _on_end_turn_pressed():
 
 func _update_phase_label():
 	phase_label.text = "Player %d - %s" % [current_player, Phase.keys()[current_phase]]		
+	
+
+func _handle_shooting_click(hit_object: Node) -> void:
+	if hit_object is BattleModel:
+		var owning_unit = hit_object.get_owning_unit()
+		if owning_unit == shooting_unit:
+			active_model = hit_object
+			print("Active weapon: ", hit_object.model_data.weapon_name)
+		return
+		
+	if hit_object is Unit or hit_object.get_parent() is Unit:
+		var unit = hit_object if hit_object is Unit else hit_object.get_parent()
+		if unit.owner_player == current_player:
+			_select_shooting_unit(unit)
+		elif active_model != null:
+			weapon_assignments[active_model] = unit
+			print("%s assigned to fire at %s" % [active_model.model_data.weapon_name, unit.unit_data.display_name])
+			active_model = null
+
+func _select_shooting_unit(unit: Unit) -> void:
+	if unit.has_shot_this_turn:
+		print("This unit has already shot this turn!")
+		return
+	shooting_unit = unit
+	active_model = null
+	weapon_assignments.clear()
+	unit_panel.update_panel(unit)
+	print("shooting wiht: ", unit.unit_data.display_name)
+	
+func _handle_damage_allocation_click(hit_object: Node) -> void:
+	var model_node = hit_object if hit_object is BattleModel else hit_object.get_parent()
+	if not (model_node is BattleModel):
+		return
+	if model_node.get_owning_unit() != pending_damage_target or not model_node.is_alive:
+		return
+	
+	model_node.take_damage(pending_damage_amount)
+	pending_damage =- 1
+	print("%s took %d damage (%d remaining)" % [model_node.model_data.display_name,pending_damage_amount, pending_damage])
+	
+	if pending_damage <= 0:
+		allocating_damage = false
+		pending_damage_target = null
+	
+func _on_resolve_shooting_pressed() -> void:
+	if shooting_unit == null or current_phase != Phase.SHOOTING:
+		return
+	_resolve_shooting()
+
+
+func _resolve_shooting() -> void:
+	for model in weapon_assignments.keys():
+		if not model.is_alive:
+			continue
+		var target_unit: Unit = weapon_assignments[model]
+		var target_models = target_unit.get_alive_models()
+		if target_models.is_empty():
+			continue
+		var data = model.model_data
+		var rep_target = target_models[0] #change later
+		var hits = CombatResolver.resolve_hits(data.weapon_skill, data.weapon_shots)
+		var wounds = CombatResolver.resolve_wounds(data.weapon_strength, rep_target.model_data.toughness, hits)
+		var failed_saves = CombatResolver.resolve_failed_saves(rep_target.model_data.save, data.weapon_ap, wounds)
+		
+		print("%s fires at %s: %d hits, %d wounds, %d failed saves" % [data.weapon_name, target_unit.unit_data.display_name, hits, wounds, failed_saves])
+			
+		if failed_saves > 0:
+			_start_damage_allocation(target_unit, failed_saves, data.weapon_damage)
+		
+	shooting_unit.has_shot_this_turn = true
+	shooting_unit = null
+	active_model = null
+	weapon_assignments.clear()
+		
+func _start_damage_allocation(target_unit: Unit, instances: int, damage_per_instance: int) -> void:
+	allocating_damage = true
+	pending_damage = instances
+	pending_damage_amount = damage_per_instance
+	pending_damage_target = target_unit
+	print("Player %d: click %d model(s) on %s to allocate damage" % [ 3 - current_player, pending_damage, target_unit.unit_data.display_name])
+	
+	
