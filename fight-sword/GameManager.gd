@@ -101,12 +101,12 @@ func _handle_click(screen_pos: Vector2) -> void:
 		_handle_shooting_click(hit_object)
 		return
 	
-	if hit_object is Unit or hit_object.get_parent() is Unit:
-		var unit = hit_object if hit_object is Unit else hit_object.get_parent()
-		_request_select(unit)
+	var clicked_unit = _resolve_clicked_unit(hit_object)
+	if clicked_unit:
+		_request_select(clicked_unit)
 	else:
 		if selected_unit:
-			_request_move(selected_unit,result.position)
+			_request_move(selected_unit, result.position)
 			
 func _request_select(unit: Unit):
 	if unit.owner_player != current_player:
@@ -161,22 +161,23 @@ func _update_phase_label():
 
 func _handle_shooting_click(hit_object: Node) -> void:
 	var model_node = hit_object if hit_object is BattleModel else hit_object.get_parent()
-	if model_node is BattleModel:
-		var owning_unit = model_node.get_owning_unit()
-		if owning_unit == shooting_unit:
-			active_model = model_node
-			print("Active weapon: ", model_node.model_data.weapon_name)
+	var owning_unit = _resolve_clicked_unit(hit_object)
+	if owning_unit == null:
 		return
 
-	if hit_object is Unit or hit_object.get_parent() is Unit:
-		var unit = hit_object if hit_object is Unit else hit_object.get_parent()
-		if unit.owner_player == current_player:
-			_select_shooting_unit(unit)
-		elif active_model != null:
-			weapon_assignments[active_model] = unit
-			print("%s assigned to fire at %s" % [active_model.model_data.weapon_name, unit.unit_data.display_name])
+	if owning_unit.owner_player == current_player:
+		if shooting_unit != owning_unit:
+			_select_shooting_unit(owning_unit)
+		elif model_node is BattleModel:
+			active_model = model_node
+			print("Active weapon: ", model_node.model_data.weapon_name)
+	else:
+		if active_model != null:
+			weapon_assignments[active_model] = owning_unit
+			print("%s assigned to fire at %s" % [active_model.model_data.weapon_name, owning_unit.unit_data.display_name])
 			active_model = null
-
+			
+			
 func _select_shooting_unit(unit: Unit) -> void:
 	if unit.has_shot_this_turn:
 		print("This unit has already shot this turn!")
@@ -238,5 +239,16 @@ func _start_damage_allocation(target_unit: Unit, instances: int, damage_per_inst
 	pending_damage_amount = damage_per_instance
 	pending_damage_target = target_unit
 	print("Player %d: click %d model(s) on %s to allocate damage" % [ 3 - current_player, pending_damage, target_unit.unit_data.display_name])
-	
-	
+
+#resolve click helper
+func _resolve_clicked_unit(hit_object: Node) -> Unit:
+	if hit_object is BattleModel:
+		return hit_object.get_owning_unit()
+	if hit_object is Unit:
+		return hit_object
+	var parent = hit_object.get_parent()
+	if parent is BattleModel:
+		return parent.get_owning_unit()
+	if parent is Unit:
+		return parent
+	return null
